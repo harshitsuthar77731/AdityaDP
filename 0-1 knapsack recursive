@@ -1,0 +1,21 @@
+public:
+    //Function to return max value that can be put in knapsack of capacity W.
+    int knapSack(int cap, int wt[], int price[], int n) 
+    { 
+        //base case
+    if(n==0||cap==0)     // when capacity==0 or n==0 so profit will be zero
+        return 0;
+    // recursive case
+    if(wt[n-1]<=cap)
+    {
+        int take = price[n-1]+knapSack(cap-wt[n-1],wt,price,n-1); // capacity will reduce after taking it
+        int not_take = knapSack(cap,wt,price,n-1);
+        return max(take,not_take);
+    }
+    else if(wt[n-1]>cap)
+    {
+        int check_for_next = knapSack(cap,wt,price,n-1);
+        return check_for_next;
+    }
+    return 0;
+    }
