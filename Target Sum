@@ -1,0 +1,41 @@
+class Solution {
+public:
+    
+    
+    
+    
+    int findTargetSumWays(vector<int>& nums, int target) {
+        // same as min'm diff but int this we will provide targeted diff
+        int m=1000000007;
+        
+        int sum = accumulate(nums.begin(),nums.end(),0);
+        int n = nums.size();
+    
+        if((sum+target)%2!=0||(n==1 && nums[0]!=abs(target))) 
+            return 0;
+        
+        int target_sum = (sum+target)/2;
+        
+        int dp[n+1][target_sum+1];
+        
+        // base case initialization
+        
+        for(int i=0;i<=n;i++)
+            dp[i][0] = 1;
+        
+        for(int j=1;j<=target_sum;j++)
+            dp[0][j]=0;
+        
+        for(int i=1;i<=n;i++)
+        {
+            for(int j=0;j<=target_sum;j++)
+            {
+                if(nums[i-1]<=j)
+                    dp[i][j] =(dp[i-1][j]%m+dp[i-1][j-nums[i-1]]%m)%m;
+                else
+                    dp[i][j] = dp[i-1][j]%m;
+            }
+        }
+        return dp[n][target_sum];
+    }
+};
