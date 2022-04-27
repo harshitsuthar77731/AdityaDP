@@ -11,7 +11,7 @@ public:
         // base case initialization  int this problem in 2d array we are assigning no. of coins required to get the amount in arlier we were just storing +1 if sum exist or not
         for(int i=0;i<=n;i++)
             dp[i][0] = 0;
-        for(int j=1;j<=amount;j++)      // when amount =0 then for all n = there will be one sol'n
+        for(int j=1;j<=amount;j++)      // when amount =0 then for all n = there will be one sol'n // and we are using INT_MAX-1 beccause  in below code we are adding +1 if use INT_MAX +1 then it over bound memory block
             dp[0][j] = INT_MAX-1;
         for(int j=1;j<=amount;j++)   // we have  to initialize 1'st row to predict future answer in this problem
         {
