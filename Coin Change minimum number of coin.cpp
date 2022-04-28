@@ -13,13 +13,6 @@ public:
             dp[i][0] = 0;
         for(int j=1;j<=amount;j++)      // when amount =0 then for all n = there will be one sol'n // and we are using INT_MAX-1 beccause  in below code we are adding +1 if use INT_MAX +1 then it over bound memory block
             dp[0][j] = INT_MAX-1;
-        for(int j=1;j<=amount;j++)   // we have  to initialize 1'st row to predict future answer in this problem
-        {
-            if(j%coins[0]==0)
-                dp[1][j] = j/coins[0];          
-            else
-                dp[1][j] = INT_MAX-1;
-        }
         // recursive case updation to top down
         for(int i=2;i<=n;i++){
             for(int j=1;j<=amount;j++){
